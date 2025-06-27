@@ -77,9 +77,9 @@ def convert_image_files(from_dir: str, to_dir: str, target_extension: str) -> No
                 with rawpy.imread(str(image_file)) as raw:
                     try:
                         thumb = raw.extract_thumb()
-                        if thumb.format == 'JPEG':
+                        if thumb.format == rawpy.ThumbFormat.JPEG:
                             image = Image.open(io.BytesIO(thumb.data))
-                        elif thumb.format == 'BITMAP':
+                        elif thumb.format == rawpy.ThumbFormat.BITMAP:
                             image = Image.fromarray(thumb.data)
                         else:
                             raise Exception("Unknown thumbnail format")
